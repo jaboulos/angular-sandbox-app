@@ -12,6 +12,9 @@ export class UsersComponent implements OnInit {
   // Property users that uses the User model as array of users
   users: User[];
 
+  showExtended: boolean = true;
+  loaded: boolean = false;
+
   constructor() {}
 
   ngOnInit() {
