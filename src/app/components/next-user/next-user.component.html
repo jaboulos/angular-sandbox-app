@@ -1,5 +1,10 @@
-<h2> {{ nextUser.firstName }} {{nextUser.lastName }} </h2>
+<h2>{{ firstName }} {{ lastName }}</h2>
 <ul>
-  <li>Age: {{ nextUser.age }}</li>
-  <li>Address: {{ nextUser.address.street }} {{ nextUser.address.city }}, {{ nextUser.address.state }}</li>
+  <li>Age: {{ age }}</li>
+  <li>
+    Address: {{ address.street }}., {{ address.city }}, {{ address.state }}
+  </li>
+  <li>
+    {{ addNumbers(2,3) }}
+  </li>
 </ul>

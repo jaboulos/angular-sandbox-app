@@ -1,5 +1,5 @@
 // Model or Interface for what a NextUser should look like
-export interface NextUser {
+export interface User {
   firstName: string;
   lastName: string;
   age: number;
