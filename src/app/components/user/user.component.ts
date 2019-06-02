@@ -15,7 +15,9 @@ export class UserComponent implements OnInit {
   // Set this variable type to our model/interface  
   user: User;
   
-  constructor() {
+  constructor() { }
+
+  ngOnInit() {
     this.user = {
       firstName: "John",
       lastName: "Doe",
@@ -27,7 +29,6 @@ export class UserComponent implements OnInit {
       }
     };
   }
-
-  ngOnInit() {}
+  
 }
 
