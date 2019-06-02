@@ -13,3 +13,6 @@
 * void (returns nothing)
 * null
 * tuple (ordered list or ordered array)
+<br>
+### Useful bookmark titles from Udemy course
+* "return values from methods directly onto the html template"
