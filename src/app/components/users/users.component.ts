@@ -11,9 +11,9 @@ import { User } from "../../Models/User";
 export class UsersComponent implements OnInit {
   // Property users that uses the User model as array of users
   users: User[];
-
   showExtended: boolean = true;
   loaded: boolean = false;
+  enableAdd: boolean = true;
 
   constructor() {}
 
@@ -28,7 +28,8 @@ export class UsersComponent implements OnInit {
             street: "1234 My Street",
             city: "Folsom",
             state: "CA"
-          }
+          },
+          image: 'http://lorempixel.com/600/600/people/3'
         },
         {
           firstName: "Sean",
@@ -38,7 +39,8 @@ export class UsersComponent implements OnInit {
             street: "4321 Sean Street",
             city: "Lynn",
             state: "MA"
-          }
+          },
+          image: 'http://lorempixel.com/600/600/people/2'
         },
         {
           firstName: "Keira",
@@ -48,7 +50,8 @@ export class UsersComponent implements OnInit {
             street: "55 Mill Street",
             city: "Miami",
             state: "FL"
-          }
+          },
+          image: 'http://lorempixel.com/600/600/people/1'
         }
       ];
       // load the users after 2 seconds
