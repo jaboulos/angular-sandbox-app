@@ -1,18 +1,27 @@
 <h2>Users</h2>
+<!-- this button is disabled through property binding if the enableAdd boolean is set to false -->
+<button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3">Add new user</button>
 <button class="btn btn-primary" (click)="toggleShowExtended()">Toggle User Info</button>
-<ul *ngIf="loaded && users?.length > 0">
+<ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
   <!-- ngFor, loop through users array on ts file, display data from that loop -->
-  <li class="card card-body" *ngFor="let user of users">
-    <h3>{{ user.firstName }} {{ user.lastName }}</h3>
-
-    <!-- the stuff below will be displayed only if showExtended is true and the user has an age and address property. -->
-    <ul class="list-group" *ngIf="showExtended && user.age && user.address">
-      <li class="list-group-item">Age: {{ user.age }}</li>
-      <li class="list-group-item">
-        Address: {{ user.address.street }} {{ user.address.city }},
-        {{ user.address.state }}
-      </li>
-    </ul>
+  <li class="card card-body mb-2" *ngFor="let user of users">
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- bind the image here -->
+        <img class="img-fluid" [src]="user.image" alt="user image">
+      </div>
+      <div class="col-sm-8">
+        <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+        <!-- the stuff below will be displayed only if showExtended is true and the user has an age and address property. -->
+        <ul class="list-group" *ngIf="showExtended && user.age && user.address">
+          <li class="list-group-item">Age: {{ user.age }}</li>
+          <li class="list-group-item">
+            Address: {{ user.address.street }} {{ user.address.city }},
+            {{ user.address.state }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </li>
 </ul>
 
