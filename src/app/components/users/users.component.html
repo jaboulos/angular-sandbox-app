@@ -1,7 +1,8 @@
 <h2>Users</h2>
+<button class="btn btn-primary" (click)="toggleShowExtended()">Toggle User Info</button>
 <ul *ngIf="loaded && users?.length > 0">
   <!-- ngFor, loop through users array on ts file, display data from that loop -->
-  <li *ngFor="let user of users">
+  <li class="card card-body" *ngFor="let user of users">
     <h3>{{ user.firstName }} {{ user.lastName }}</h3>
 
     <!-- the stuff below will be displayed only if showExtended is true and the user has an age and address property. -->
