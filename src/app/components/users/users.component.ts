@@ -55,7 +55,7 @@ export class UsersComponent implements OnInit {
       this.loaded = true;
     }, 2000)
 
-    this.showExtended = false;
+    this.showExtended = true;
     
     // this.addUser({
     //   firstName: "David",
@@ -72,5 +72,9 @@ export class UsersComponent implements OnInit {
   // Method to add data to HTML template
   addUser(user: User) {
     this.users.push(user);
+  }
+
+  toggleShowExtended() {
+    this.showExtended = !this.showExtended
   }
 }
