@@ -29,7 +29,7 @@ export class UsersComponent implements OnInit {
             city: "Folsom",
             state: "CA"
           },
-          image: 'http://lorempixel.com/600/600/people/3'
+          // image: 'http://lorempixel.com/600/600/people/3'
         },
         {
           firstName: "Sean",
