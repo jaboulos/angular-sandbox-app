@@ -18,49 +18,55 @@ export class UsersComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.users = [
-      {
-        firstName: "John",
-        lastName: "Doe",
-        age: 30,
-        address: {
-          street: "1234 My Street",
-          city: "Folsom",
-          state: "CA"
+    setTimeout(() => {
+      this.users = [
+        {
+          firstName: "John",
+          lastName: "Doe",
+          age: 30,
+          address: {
+            street: "1234 My Street",
+            city: "Folsom",
+            state: "CA"
+          }
+        },
+        {
+          firstName: "Sean",
+          lastName: "Johnson",
+          age: 34,
+          address: {
+            street: "4321 Sean Street",
+            city: "Lynn",
+            state: "MA"
+          }
+        },
+        {
+          firstName: "Keira",
+          lastName: "Williams",
+          age: 27,
+          address: {
+            street: "55 Mill Street",
+            city: "Miami",
+            state: "FL"
+          }
         }
-      },
-      {
-        firstName: "Sean",
-        lastName: "Johnson",
-        age: 34,
-        address: {
-          street: "4321 Sean Street",
-          city: "Lynn",
-          state: "MA"
-        }
-      },
-      {
-        firstName: "Keira",
-        lastName: "Williams",
-        age: 27,
-        address: {
-          street: "55 Mill Street",
-          city: "Miami",
-          state: "FL"
-        }
-      }
-    ];
+      ];
+      // load the users after 2 seconds
+      this.loaded = true;
+    }, 2000)
 
-    this.addUser({
-      firstName: "David",
-      lastName: "Davidson",
-      age: 24,
-      address: {
-        street: "51 Fake Street",
-        city: "Miami",
-        state: "FL"
-      }
-    });
+    this.showExtended = false;
+    
+    // this.addUser({
+    //   firstName: "David",
+    //   lastName: "Davidson",
+    //   age: 24,
+    //   address: {
+    //     street: "51 Fake Street",
+    //     city: "Miami",
+    //     state: "FL"
+    //   }
+    // });
   }
 
   // Method to add data to HTML template
