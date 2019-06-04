@@ -86,6 +86,11 @@ export class UsersComponent implements OnInit {
     this.users.push(user);
   }
 
+  // take in the event that you pass in
+  fireEvent(e) {
+    console.log('Button clicked, all event info: ', e);
+  }
+
   toggleShowExtended() {
     this.showExtended = !this.showExtended
   }

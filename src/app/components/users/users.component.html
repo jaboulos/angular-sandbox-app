@@ -1,5 +1,5 @@
 <h2>Users</h2>
-<button [ngClass]="currentClasses">Sandbox button</button>
+<button (click)="fireEvent($event)" [ngClass]="currentClasses">Sandbox button</button>
 <!-- this button is disabled through property binding if the enableAdd boolean is set to false -->
 <button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3"  >Add new user</button>
 
