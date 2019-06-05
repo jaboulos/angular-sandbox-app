@@ -10,4 +10,6 @@ export interface User {
   },
   image?: string;
   isActive?: boolean;
+  registered?: any;
+  hide?: boolean;
 }

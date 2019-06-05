@@ -16,6 +16,7 @@ export class UsersComponent implements OnInit {
   enableAdd: boolean = true;
   currentClasses = {};
   currentStyles = {};
+  showUserForm: boolean = false;
 
   constructor() {}
 
@@ -33,6 +34,7 @@ export class UsersComponent implements OnInit {
           },
           image: 'http://lorempixel.com/600/600/people/3',
           isActive: true,
+          hide: true
         },
         {
           firstName: "Sean",
@@ -44,7 +46,8 @@ export class UsersComponent implements OnInit {
             state: "MA"
           },
           // image: 'http://lorempixel.com/600/600/people/2',
-          isActive: false
+          isActive: false,
+          hide: true
         },
         {
           firstName: "Keira",
@@ -56,7 +59,8 @@ export class UsersComponent implements OnInit {
             state: "FL"
           },
           image: 'http://lorempixel.com/600/600/people/1',
-          isActive: false
+          isActive: false,
+          hide: true
         }
       ];
       // load the users after 2 seconds
@@ -77,7 +81,7 @@ export class UsersComponent implements OnInit {
     //     state: "FL"
     //   }
     // });
-    
+
   }
 
 
@@ -88,7 +92,9 @@ export class UsersComponent implements OnInit {
 
   // take in the event that you pass in
   fireEvent(e) {
-    console.log('Button clicked, all event info: ', e);
+    // e.target.value gives actual value typed in
+    console.log('Button clicked, all event info: ', e.target.value);
+    console.log('Button clicked, all event info: ', e.type);
   }
 
   toggleShowExtended() {
@@ -109,6 +115,15 @@ export class UsersComponent implements OnInit {
       // if showExtended is true, padding is 0, else padding is 40px
       'padding-top': this.showExtended ? '0' : '40px'
     }
+  }
+
+  // toggleHide(user:User) {
+  //   user.hide= !user.hide
+  // }
+
+  onSubmit(e) {
+    console.log(123);
+    e.preventDefault();
   }
 
 }

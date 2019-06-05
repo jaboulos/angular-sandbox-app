@@ -1,30 +1,86 @@
-<h2>Users</h2>
-<button (click)="fireEvent($event)" [ngClass]="currentClasses">Sandbox button</button>
-<!-- this button is disabled through property binding if the enableAdd boolean is set to false -->
-<button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3"  >Add new user</button>
+<button (click)="showUserForm = !showUserForm" class="btn btn-dark mb-3">
+  Add User
+</button>
+<div class="card-card-body mb-3" *ngIf="showUserForm">
+  <h2>Add User</h2>
+  <form (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label>First Name</label>
+      <input
+        (keypress)="fireEvent($event)"
+        type="text"
+        class="form-control"
+        name="firstName"
+      />
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" name="lastName"/>
+    </div>
+    
+    <div class="form-group">
+      <label>Age</label>
+      <input type="number" class="form-control" name="age"/>
+    </div>
+    
+    <div class="form-group">
+      <label>Street Address</label>
+      <input type="text" class="form-control" name="street"/>
+    </div>
 
-<button class="btn btn-primary" (click)="toggleShowExtended()" >Toggle User Info</button>
+    <div class="form-group">
+        <label>City</label>
+        <input type="text" class="form-control" name="city"/>
+      </div>
+
+      <div class="form-group">
+          <label>State</label>
+          <input type="text" class="form-control" name="state"/>
+        </div>
+
+    <button [disabled]="!enableAdd" class="btn btn-light btn-block mb-3">
+      Add new user
+    </button>
+  </form>
+</div>
+
+
+<button (click)="fireEvent($event)" [ngClass]="currentClasses">
+  Sandbox button
+</button>
+<!-- this button is disabled through property binding if the enableAdd boolean is set to false -->
+
+<button class="btn btn-primary" (click)="toggleShowExtended()">
+  Toggle User Info
+</button>
 <ul class="list-unstyled" *ngIf="loaded && users?.length > 0">
   <!-- ngFor, loop through users array on ts file, display data from that loop -->
   <li class="card card-body mb-2" *ngFor="let user of users">
     <div class="row">
       <div class="col-sm-8">
-        <h3 [ngStyle]="currentStyle">{{ user.firstName }} {{ user.lastName }}</h3>
+        <h3 [ngStyle]="currentStyle">
+          {{ user.firstName }} {{ user.lastName }}
+        </h3>
         <!-- the stuff below will be displayed only if showExtended is true and the user has an age and address property. -->
         <ul class="list-group" *ngIf="showExtended && user.age && user.address">
           <div class="col-sm-4">
             <!-- bind the image here -->
             <!-- 3 ways for property binding -->
 
-            <img *ngIf="user.image" class="img-fluid" [src]="user.image" alt="user image">
+            <img
+              *ngIf="user.image"
+              class="img-fluid"
+              [src]="user.image"
+              alt="user image"
+            />
 
             <!-- <img *ngIf="user.image" class="img-fluid" src={{user.image}} alt="user image"> -->
 
             <!-- <img *ngIf="user.image" class="img-fluid" bind-src="user.image" alt="user image"> -->
-
-
           </div>
-          <li class="list-group-item" [class.bg-success]="user.isActive">Age: {{ user.age }}</li>
+          <li class="list-group-item" [class.bg-success]="user.isActive">
+            Age: {{ user.age }}
+          </li>
           <li class="list-group-item" [class.bg-success]="user.isActive">
             Address: {{ user.address.street }}, {{ user.address.city }},
             {{ user.address.state }}
@@ -34,6 +90,11 @@
     </div>
   </li>
 </ul>
+<!-- <ul *ngIf="!user.hide && user.age && user.address">
+      <li class="list-group-item">
+        <span>{{ user.firstName}} is {{ user.age }} years old.</span>
+      </li>
+    </ul> -->
 
 <!-- Make ng-template element for else statement on line 2 -->
 <!-- <ng-template #noUsers><h4>No Users</h4></ng-template> -->
