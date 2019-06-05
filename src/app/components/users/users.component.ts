@@ -9,11 +9,22 @@ import { User } from "../../Models/User";
   styleUrls: ["./users.component.css"]
 })
 export class UsersComponent implements OnInit {
+  // user property, will be used for input fields on form to bind to this
+  user: User = {
+    firstName: "",
+    lastName: "",
+    age: null,
+    address: {
+      street: "",
+      city: "",
+      state: ""
+    }
+  };
   // Property users that uses the User model as array of users
   users: User[];
   showExtended: boolean = true;
   loaded: boolean = false;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
   currentClasses = {};
   currentStyles = {};
   showUserForm: boolean = false;
@@ -32,7 +43,7 @@ export class UsersComponent implements OnInit {
             city: "Folsom",
             state: "CA"
           },
-          image: 'http://lorempixel.com/600/600/people/3',
+          image: "http://lorempixel.com/600/600/people/3",
           isActive: true,
           hide: true
         },
@@ -58,19 +69,19 @@ export class UsersComponent implements OnInit {
             city: "Miami",
             state: "FL"
           },
-          image: 'http://lorempixel.com/600/600/people/1',
+          image: "http://lorempixel.com/600/600/people/1",
           isActive: false,
           hide: true
         }
       ];
       // load the users after 2 seconds
       this.loaded = true;
-    }, 2000)
+    }, 2000);
     // call setCurrentClasses function to apply classes to ngClass elements
     this.setCurrentClasses();
     // this.showExtended = true;
     this.setCurrentStyles();
-    
+
     // this.addUser({
     //   firstName: "David",
     //   lastName: "Davidson",
@@ -81,40 +92,52 @@ export class UsersComponent implements OnInit {
     //     state: "FL"
     //   }
     // });
-
   }
 
-
   // Method to add data to HTML template
-  addUser(user: User) {
-    this.users.push(user);
+  addUser() {
+    this.user.isActive = true;
+    this.user.registered = new Date();
+    this.users.unshift(this.user);
+
+    // how to clear out form
+    this.user = {
+      firstName: "",
+      lastName: "",
+      age: null,
+      address: {
+        street: "",
+        city: "",
+        state: ""
+      }
+    };
   }
 
   // take in the event that you pass in
   fireEvent(e) {
     // e.target.value gives actual value typed in
-    console.log('Button clicked, all event info: ', e.target.value);
-    console.log('Button clicked, all event info: ', e.type);
+    console.log("Button clicked, all event info: ", e.target.value);
+    console.log("Button clicked, all event info: ", e.type);
   }
 
   toggleShowExtended() {
-    this.showExtended = !this.showExtended
+    this.showExtended = !this.showExtended;
   }
 
   // function to set values for currentClasses property
   setCurrentClasses() {
     this.currentClasses = {
       // this class will be applied to the ngClass button if this.enableAdd is true
-      'btn-success': this.enableAdd,
-      'big-text': this.showExtended
-    }
+      "btn-success": this.enableAdd,
+      "big-text": this.showExtended
+    };
   }
 
   setCurrentStyles() {
     this.currentStyles = {
       // if showExtended is true, padding is 0, else padding is 40px
-      'padding-top': this.showExtended ? '0' : '40px'
-    }
+      "padding-top": this.showExtended ? "0" : "40px"
+    };
   }
 
   // toggleHide(user:User) {
@@ -125,5 +148,4 @@ export class UsersComponent implements OnInit {
     console.log(123);
     e.preventDefault();
   }
-
 }
