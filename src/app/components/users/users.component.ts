@@ -9,11 +9,22 @@ import { User } from "../../Models/User";
   styleUrls: ["./users.component.css"]
 })
 export class UsersComponent implements OnInit {
+  // user property, will be used for input fields on form to bind to this
+  user: User = {
+    firstName: '',
+    lastName: '',
+    age: null,
+    address: {
+      street: '',
+      city: '',
+      state: ''
+    }
+  }
   // Property users that uses the User model as array of users
   users: User[];
   showExtended: boolean = true;
   loaded: boolean = false;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
   currentClasses = {};
   currentStyles = {};
   showUserForm: boolean = false;
