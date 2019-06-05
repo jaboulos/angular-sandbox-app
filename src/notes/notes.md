@@ -14,5 +14,10 @@
 * null
 * tuple (ordered list or ordered array)
 <br>
+
+### Class Binding
+Adding or using certain classes depending on certain properties, values or aspects of our component.
+
+<br>
 ### Useful bookmark titles from Udemy course
 * "return values from methods directly onto the html template"
