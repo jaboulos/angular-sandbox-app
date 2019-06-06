@@ -4,7 +4,6 @@
 <div class="card-card-body mb-3" *ngIf="showUserForm">
   <h2>Add User</h2>
 
-
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label>First Name</label>
@@ -12,6 +11,9 @@
       <input
         type="text"
         [(ngModel)]="user.firstName"
+        [ngClass]="{
+          'is-invalid':userFirstName.errors && userFirstName.touched
+        }"
         class="form-control"
         name="firstName"
         #userFirstName="ngModel"
@@ -20,8 +22,12 @@
       />
 
       <!-- Validation error message needs to be in the form group div -->
-      <div class="invalid-feedback">
+      <div [hidden]="!userFirstname.errors?.required" class="invalid-feedback">
         First name required
+      </div>
+
+      <div [hidden]="!userFirstname.errors?.minlength" class="invalid-feedback">
+        Must be at least 2 characters
       </div>
 
     </div>
@@ -100,7 +106,7 @@
           <li class="list-group-item">Last Name: {{ user.lastName }}</li>
           <li class="list-group-item">Email: {{ user.email }}</li>
           <li class="list-group-item">
-           Registered: {{ user.registered | date }} 
+            Registered: {{ user.registered | date }}
           </li>
         </ul>
       </div>
