@@ -13,12 +13,7 @@ export class UsersComponent implements OnInit {
   user: User = {
     firstName: "",
     lastName: "",
-    age: null,
-    address: {
-      street: "",
-      city: "",
-      state: ""
-    }
+    email: "",
   };
   // Property users that uses the User model as array of users
   users: User[];
@@ -37,40 +32,28 @@ export class UsersComponent implements OnInit {
         {
           firstName: "John",
           lastName: "Doe",
-          age: 70,
-          address: {
-            street: "1234 My Street",
-            city: "Folsom",
-            state: "CA"
-          },
-          image: "http://lorempixel.com/600/600/people/3",
+          email: "johnDoe@email.com",
+          image: "http://lorempixel.com/600/600/people/9",
           isActive: true,
+          registered: new Date('03/11/2017 06:20:00'),
           hide: true
         },
         {
           firstName: "Sean",
           lastName: "Johnson",
-          age: 34,
-          address: {
-            street: "4321 Sean Street",
-            city: "Lynn",
-            state: "MA"
-          },
-          // image: 'http://lorempixel.com/600/600/people/2',
+          email: "seanJohnson@gmail.com",
+          image: 'http://lorempixel.com/600/600/people/2',
           isActive: false,
+          registered: new Date('03/11/2016 06:20:00'),
           hide: true
         },
         {
           firstName: "Keira",
           lastName: "Williams",
-          age: 27,
-          address: {
-            street: "55 Mill Street",
-            city: "Miami",
-            state: "FL"
-          },
+          email: "keiraWilliams@yahoo.com",
           image: "http://lorempixel.com/600/600/people/1",
           isActive: false,
+          registered: new Date('03/11/2019 06:20:00'),
           hide: true
         }
       ];
@@ -104,12 +87,7 @@ export class UsersComponent implements OnInit {
     this.user = {
       firstName: "",
       lastName: "",
-      age: null,
-      address: {
-        street: "",
-        city: "",
-        state: ""
-      }
+      email: "",
     };
   }
 
