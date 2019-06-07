@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 // ViewChild gives us access to a child component or directive, using ngForm directive
 
+// import service
+import { DataService } from '../../services/data.service';
 // import interface
 import { User } from "../../Models/User";
 
@@ -14,7 +16,7 @@ export class UsersComponent implements OnInit {
   user: User = {
     firstName: "",
     lastName: "",
-    email: "",
+    email: ""
   };
   // Property users that uses the User model as array of users
   users: User[];
@@ -24,41 +26,24 @@ export class UsersComponent implements OnInit {
   currentClasses = {};
   currentStyles = {};
   showUserForm: boolean = false;
- @ViewChild('userForm') form: any;
+  @ViewChild("userForm") form: any;
 
-  constructor() {}
+  // add data property for observable
+  data: any;
+
+  // private means we can only use it within this class
+  // declare its name, the name can be anything, for here we'll call it dataService.  _ means its a private service, depeneds on your style
+  constructor(private _dataService: DataService) {}
 
   ngOnInit() {
+    // subscribe to observable
+    this._dataService.getData().subscribe(data => {
+      console.log(data);
+    });
+    // put service into this.users property (not sure what that means)
+    this.users = this._dataService.getUsers();
+
     setTimeout(() => {
-      this.users = [
-        {
-          firstName: "John",
-          lastName: "Doe",
-          email: "johnDoe@email.com",
-          image: "http://lorempixel.com/600/600/people/9",
-          isActive: true,
-          registered: new Date('03/11/2017 06:20:00'),
-          hide: true
-        },
-        {
-          firstName: "Sean",
-          lastName: "Johnson",
-          email: "seanJohnson@gmail.com",
-          image: 'http://lorempixel.com/600/600/people/2',
-          isActive: false,
-          registered: new Date('03/11/2016 06:20:00'),
-          hide: true
-        },
-        {
-          firstName: "Keira",
-          lastName: "Williams",
-          email: "keiraWilliams@yahoo.com",
-          image: "http://lorempixel.com/600/600/people/1",
-          isActive: false,
-          registered: new Date('03/11/2019 06:20:00'),
-          hide: true
-        }
-      ];
       // load the users after 2 seconds
       this.loaded = true;
     }, 2000);
@@ -66,17 +51,6 @@ export class UsersComponent implements OnInit {
     this.setCurrentClasses();
     // this.showExtended = true;
     this.setCurrentStyles();
-
-    // this.addUser({
-    //   firstName: "David",
-    //   lastName: "Davidson",
-    //   age: 24,
-    //   address: {
-    //     street: "51 Fake Street",
-    //     city: "Miami",
-    //     state: "FL"
-    //   }
-    // });
   }
 
   // Method to add data to HTML template
@@ -89,7 +63,7 @@ export class UsersComponent implements OnInit {
     this.user = {
       firstName: "",
       lastName: "",
-      email: "",
+      email: ""
     };
   }
 
@@ -129,14 +103,18 @@ export class UsersComponent implements OnInit {
   //   e.preventDefault();
   // }
 
-  onSubmit({value, valid}: {value:User, valid: boolean}) {
-    if(!valid) {
-      console.log('Form is not valid');
+  onSubmit({ value, valid }: { value: User; valid: boolean }) {
+    if (!valid) {
+      console.log("Form is not valid");
     } else {
       value.isActive = true;
       value.registered = new Date();
-      value.hide=true
-      this.users.unshift(value);
+      value.hide = true;
+
+      // user service post request
+      // this.users.unshift(value);
+      // pass in value, value object is coming from the form, see params for onSubmit
+      this._dataService.addUser(value)
       this.form.reset();
     }
   }
