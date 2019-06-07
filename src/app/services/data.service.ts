@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+// import { of } from 'rxjs';
 
 import { User } from "../Models/User";
 
@@ -48,13 +48,14 @@ export class DataService {
   }
 
   // Get user data
-  // give it a return type that is like the User model
-  getUsers(): User[] {
+  // give it a return type that is is an observable and match it to User model
+  getUsers():Observable<User[]>  {
     console.log('Fetching users success');
-    return this.users;
+    // return this as an observable
+    return of(this.users);
   }
 
-  // example of observable get request
+  // example of observable get request, open data stream
   getData() {
     this.data = new Observable(observer => {
       // publish anything that has subscribed to this observer

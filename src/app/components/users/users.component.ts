@@ -41,12 +41,18 @@ export class UsersComponent implements OnInit {
       console.log(data);
     });
     // put service into this.users property (not sure what that means)
-    this.users = this._dataService.getUsers();
-
-    setTimeout(() => {
-      // load the users after 2 seconds
+    // call service and subscribe to it
+    this._dataService.getUsers().subscribe(users => {
+      // set this.users = to the users coming in from the service
+      this.users = users
       this.loaded = true;
-    }, 2000);
+    });
+
+    // setTimeout(() => {
+    //   // load the users after 2 seconds
+    //   this.loaded = true;
+    // }, 2000);
+    
     // call setCurrentClasses function to apply classes to ngClass elements
     this.setCurrentClasses();
     // this.showExtended = true;
