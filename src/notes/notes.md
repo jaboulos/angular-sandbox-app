@@ -18,6 +18,9 @@
 ### Class Binding
 Adding or using certain classes depending on certain properties, values or aspects of our component.
 
+### Services
+<b>Classes that can send functionality and data across multiple components</b>
+
 <br>
 ### Useful bookmark titles from Udemy course
 * "return values from methods directly onto the html template"

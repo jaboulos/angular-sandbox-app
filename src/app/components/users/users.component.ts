@@ -1,5 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
+// ViewChild gives us access to a child component or directive, using ngForm directive
 
+// import service
+import { DataService } from '../../services/data.service';
 // import interface
 import { User } from "../../Models/User";
 
@@ -13,12 +16,7 @@ export class UsersComponent implements OnInit {
   user: User = {
     firstName: "",
     lastName: "",
-    age: null,
-    address: {
-      street: "",
-      city: "",
-      state: ""
-    }
+    email: ""
   };
   // Property users that uses the User model as array of users
   users: User[];
@@ -28,70 +26,37 @@ export class UsersComponent implements OnInit {
   currentClasses = {};
   currentStyles = {};
   showUserForm: boolean = false;
+  @ViewChild("userForm") form: any;
 
-  constructor() {}
+  // add data property for observable
+  data: any;
+
+  // private means we can only use it within this class
+  // declare its name, the name can be anything, for here we'll call it dataService.  _ means its a private service, depeneds on your style
+  constructor(private _dataService: DataService) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.users = [
-        {
-          firstName: "John",
-          lastName: "Doe",
-          age: 70,
-          address: {
-            street: "1234 My Street",
-            city: "Folsom",
-            state: "CA"
-          },
-          image: "http://lorempixel.com/600/600/people/3",
-          isActive: true,
-          hide: true
-        },
-        {
-          firstName: "Sean",
-          lastName: "Johnson",
-          age: 34,
-          address: {
-            street: "4321 Sean Street",
-            city: "Lynn",
-            state: "MA"
-          },
-          // image: 'http://lorempixel.com/600/600/people/2',
-          isActive: false,
-          hide: true
-        },
-        {
-          firstName: "Keira",
-          lastName: "Williams",
-          age: 27,
-          address: {
-            street: "55 Mill Street",
-            city: "Miami",
-            state: "FL"
-          },
-          image: "http://lorempixel.com/600/600/people/1",
-          isActive: false,
-          hide: true
-        }
-      ];
-      // load the users after 2 seconds
+    // subscribe to observable
+    this._dataService.getData().subscribe(data => {
+      console.log(data);
+    });
+    // put service into this.users property (not sure what that means)
+    // call service and subscribe to it
+    this._dataService.getUsers().subscribe(users => {
+      // set this.users = to the users coming in from the service
+      this.users = users
       this.loaded = true;
-    }, 2000);
+    });
+
+    // setTimeout(() => {
+    //   // load the users after 2 seconds
+    //   this.loaded = true;
+    // }, 2000);
+    
     // call setCurrentClasses function to apply classes to ngClass elements
     this.setCurrentClasses();
     // this.showExtended = true;
     this.setCurrentStyles();
-
-    // this.addUser({
-    //   firstName: "David",
-    //   lastName: "Davidson",
-    //   age: 24,
-    //   address: {
-    //     street: "51 Fake Street",
-    //     city: "Miami",
-    //     state: "FL"
-    //   }
-    // });
   }
 
   // Method to add data to HTML template
@@ -104,12 +69,7 @@ export class UsersComponent implements OnInit {
     this.user = {
       firstName: "",
       lastName: "",
-      age: null,
-      address: {
-        street: "",
-        city: "",
-        state: ""
-      }
+      email: ""
     };
   }
 
@@ -144,8 +104,24 @@ export class UsersComponent implements OnInit {
   //   user.hide= !user.hide
   // }
 
-  onSubmit(e) {
-    console.log(123);
-    e.preventDefault();
+  // onSubmit(e) {
+  //   console.log(123);
+  //   e.preventDefault();
+  // }
+
+  onSubmit({ value, valid }: { value: User; valid: boolean }) {
+    if (!valid) {
+      console.log("Form is not valid");
+    } else {
+      value.isActive = true;
+      value.registered = new Date();
+      value.hide = true;
+
+      // user service post request
+      // this.users.unshift(value);
+      // pass in value, value object is coming from the form, see params for onSubmit
+      this._dataService.addUser(value)
+      this.form.reset();
+    }
   }
 }
