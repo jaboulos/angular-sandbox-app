@@ -14,6 +14,7 @@ import { Post } from '../../Models/Post';
 export class PostFormComponent implements OnInit {
   // emmit the new post, that is returned in the subscribe method to oru Posts component
   @Output() newPost: EventEmitter<Post> = new EventEmitter();
+  @Output() updatedPost: EventEmitter<Post> = new EventEmitter();
   // define inputs received from other components
   // bind the currentPost input to form elements on post-form.html
   @Input() currentPost: Post;
@@ -40,6 +41,12 @@ export class PostFormComponent implements OnInit {
   }
 
   updatePost() {
-    console.log(123);
+    // put request from postService
+    this.postService.updatePost(this.currentPost).subscribe(post => {
+      console.log(post);
+      // change button back to original state
+      this.isEdit = false;
+      this.updatedPost.emit(post);
+    });
   }
 }
