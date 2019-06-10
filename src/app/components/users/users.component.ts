@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 // ViewChild gives us access to a child component or directive, using ngForm directive
 
 // import service
-import { DataService } from '../../services/data.service';
+import { UserService } from '../../services/user.service';
 // import interface
 import { User } from "../../Models/User";
 
@@ -33,16 +33,16 @@ export class UsersComponent implements OnInit {
 
   // private means we can only use it within this class
   // declare its name, the name can be anything, for here we'll call it dataService.  _ means its a private service, depeneds on your style
-  constructor(private _dataService: DataService) {}
+  constructor(private _userService: UserService) {}
 
   ngOnInit() {
     // subscribe to observable
-    this._dataService.getData().subscribe(data => {
+    this._userService.getData().subscribe(data => {
       console.log(data);
     });
     // put service into this.users property (not sure what that means)
     // call service and subscribe to it
-    this._dataService.getUsers().subscribe(users => {
+    this._userService.getUsers().subscribe(users => {
       // set this.users = to the users coming in from the service
       this.users = users
       this.loaded = true;
@@ -52,7 +52,7 @@ export class UsersComponent implements OnInit {
     //   // load the users after 2 seconds
     //   this.loaded = true;
     // }, 2000);
-    
+
     // call setCurrentClasses function to apply classes to ngClass elements
     this.setCurrentClasses();
     // this.showExtended = true;
@@ -120,7 +120,7 @@ export class UsersComponent implements OnInit {
       // user service post request
       // this.users.unshift(value);
       // pass in value, value object is coming from the form, see params for onSubmit
-      this._dataService.addUser(value)
+      this._userService.addUser(value)
       this.form.reset();
     }
   }

@@ -8,7 +8,7 @@ import { User } from "../Models/User";
 @Injectable({
   providedIn: "root"
 })
-export class DataService {
+export class UserService {
   // initialize users property and set it to user model
   users: User[];
   // create field for Observable <set to array><anything can be inside this array>>
@@ -47,13 +47,6 @@ export class DataService {
     // End constructor bracket
   }
 
-  // Get user data
-  // give it a return type that is is an observable and match it to User model
-  getUsers():Observable<User[]>  {
-    console.log('Fetching users success');
-    // return this as an observable
-    return of(this.users);
-  }
 
   // example of observable get request, open data stream
   getData() {
@@ -79,6 +72,11 @@ export class DataService {
     return this.data;
   }
 
+  // Get users
+  // give it a return type that is is an observable and match it to User model
+  getUsers(): Observable<User[]> {
+    return of(this.users);
+  }
   // Post user data
   // takes in an argument user:User, body of the request
   addUser(user: User) {
