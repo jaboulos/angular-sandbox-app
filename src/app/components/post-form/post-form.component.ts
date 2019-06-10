@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 // bring in service for making http requests
 import { PostService } from '../../services/post.service';
@@ -12,10 +12,12 @@ import { Post } from '../../Models/Post';
   styleUrls: ['./post-form.component.css']
 })
 export class PostFormComponent implements OnInit {
-  post: Post;
   // emmit the new post, that is returned in the subscribe method to oru Posts component
   @Output() newPost: EventEmitter<Post> = new EventEmitter();
-
+  // define inputs received from other components
+  // bind the currentPost input to form elements on post-form.html
+  @Input() currentPost: Post;
+  @Input() isEdit: boolean;
   constructor(private postService: PostService) { }
 
   ngOnInit() {
@@ -35,5 +37,9 @@ export class PostFormComponent implements OnInit {
         console.log(post);
       });
     }
+  }
+
+  updatePost() {
+    console.log(123);
   }
 }

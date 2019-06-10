@@ -19,6 +19,10 @@ export class PostsComponent implements OnInit {
     title: '',
     body: ''
   };
+
+  // boolean for changing innertext on form button
+  isEdit: boolean = false;
+
   // inject service into constructor
   constructor(private postService: PostService) { }
 
@@ -44,5 +48,8 @@ export class PostsComponent implements OnInit {
       // We set those default values when we declared the field at the top of this page.
       // We want the form to be blank by default
     this.currentPost = post;
+
+    // going to pass isEdit into post-form.html and ts
+    this.isEdit = true;
   }
 }
