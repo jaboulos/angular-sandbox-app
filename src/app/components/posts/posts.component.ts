@@ -19,6 +19,10 @@ export class PostsComponent implements OnInit {
     title: '',
     body: ''
   };
+
+  // boolean for changing innertext on form button
+  isEdit: boolean = false;
+
   // inject service into constructor
   constructor(private postService: PostService) { }
 
@@ -44,5 +48,42 @@ export class PostsComponent implements OnInit {
       // We set those default values when we declared the field at the top of this page.
       // We want the form to be blank by default
     this.currentPost = post;
+
+    // going to pass isEdit into post-form.html and ts
+    this.isEdit = true;
+  }
+
+  onUpdatedPost(post: Post) {
+    // loop through all of the posts
+    // inside the forEach, going to get the current post and the index
+    this.posts.forEach((cur, index) => {
+      // check to see if post.id, the post coming from our eventemitter is equal to the current id
+      if (post.id === cur.id) {
+        this.posts.splice(index, 1);
+        this.posts.unshift(post);
+        this.isEdit = false;
+        this.currentPost = {
+          id: 0,
+          title: '',
+          body: ''
+        };
+      }
+    });
+  }
+
+  removePost(post: Post) {
+    // confirm if you want to remove post
+    if(confirm('Are you sure?')) {
+      this.postService.removePost(post.id).subscribe(() => {
+        // loop through posts and check to see if post id matches current iteration, if it does
+        // splice it out
+        this.posts.forEach((cur, index) => {
+          // check to see if post.id, the post coming from our eventemitter is equal to the current id
+          if (post.id === cur.id) {
+            this.posts.splice(index, 1);
+          }
+        });
+      });
+    }
   }
 }
