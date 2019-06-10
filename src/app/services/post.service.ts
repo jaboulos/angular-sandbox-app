@@ -41,6 +41,14 @@ export class PostService {
     return this.http.put<Post>(url, post, httpOptions);
   }
 
+  // Get details from a post based on the id you pass into the url
+  // id is being passed in on the post-details.ts component in the getPost function, this function receives it
+  getPost(id: number): Observable<Post> {
+    const url = `${this.postsUrl}/${id}`;
+
+    return this.http.get<Post>(url);
+  }
+
   // can accept the entire post body or the post id
   removePost(post: Post | number): Observable<Post> {
     // create variable called id
