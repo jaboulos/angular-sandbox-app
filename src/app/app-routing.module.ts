@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'post-details/:id', component: PostDetailsComponent },
   { path: '**', component: NotFoundComponent },
 ];
-// test
+// test 1
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
