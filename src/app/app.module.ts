@@ -17,6 +17,7 @@ import { PostFormComponent } from './components/post-form/post-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DemographicsFormComponent } from './components/demographics-form/demographics-form.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     PostFormComponent,
     HomeComponent,
     PostDetailsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DemographicsFormComponent
   ],
   imports: [
     BrowserModule,
