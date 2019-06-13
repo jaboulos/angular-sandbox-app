@@ -17,4 +17,10 @@ export class TemplateDrivenFormComponent implements OnInit {
     console.log(x);
   }
 
+  submit(f) {
+    console.log(f);
+    // get a json object that we can send to an api on a server that persists
+    f.value;
+  }
+
 }
