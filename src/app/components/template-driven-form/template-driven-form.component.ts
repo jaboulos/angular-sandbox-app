@@ -12,4 +12,9 @@ export class TemplateDrivenFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  // console logs ngModel
+  log(x) {
+    console.log(x);
+  }
+
 }
