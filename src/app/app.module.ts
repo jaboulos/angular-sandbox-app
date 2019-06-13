@@ -18,6 +18,8 @@ import { HomeComponent } from './components/home/home.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DemographicsFormComponent } from './components/demographics-form/demographics-form.component';
+import { TemplateDrivenFormComponent } from './components/template-driven-form/template-driven-form.component';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { DemographicsFormComponent } from './components/demographics-form/demogr
     HomeComponent,
     PostDetailsComponent,
     NotFoundComponent,
-    DemographicsFormComponent
+    DemographicsFormComponent,
+    TemplateDrivenFormComponent,
+    ReactiveFormComponent
   ],
   imports: [
     BrowserModule,
