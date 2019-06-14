@@ -1,17 +1,44 @@
-<form>
+<form [formGroup]="formOne">
   <div class="form-group">
       <label for="username">Username</label>
       <input
-          id="username"
-          type="text"
-          class="form-control">
+        formControlName="username"
+        maxlength=12
+        id="username"
+        type="text"
+        class="form-control">
   </div>
+
+  <!-- Validation error messages for username -->
+
+  <!-- Only render this message if field is touched and invalid. -->
+  <!-- We made a field on the ts file, on template, we can access these fields directly, the field we defined, we set it = to form group so its an instance of the form group class -->
+  <!-- this instance has method get, we can get access to any form control object inside this group, we can access something like username -->
+
+  <!-- BEFORE USERNAME REFACTOR -->
+  <!-- <div *ngIf="formOne.get('username').touched && username.invalid" class="alert alert-danger">Username is required.</div> -->
+
+  <!-- AFTER USERNAME PROPERTY REFACTOR -->
+  <div
+    *ngIf="username.touched && formOne.get('username').invalid"
+    class="alert alert-danger">
+    <!-- Error message if field is blank -->
+    <div *ngIf="username.errors.required">Username is required.</div>
+    <!-- Error message if minlength is less than 3 -->
+    <div *ngIf="username.errors.minlength">Username should be at least {{ username.errors.minlength.requiredLength }} characters long.</div>
+    <!-- Error message for white space -->
+    <div *ngIf="username.errors.cannotContainSpace">Username cannot contain space.</div>
+    <!-- Error message for numbers -->
+    <div *ngIf="username.errors.cannotContainNumbers">Username cannot contain numbers.</div>
+  </div>
+
   <div class="form-group">
       <label for="password">Password</label>
       <input
-          id="password"
-          type="text"
-          class="form-control">
+        formControlName="password"
+        id="password"
+        type="text"
+        class="form-control">
   </div>
   <button class="btn btn-primary" type="submit">Sign Up</button>
 </form>
