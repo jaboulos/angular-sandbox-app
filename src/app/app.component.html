@@ -6,5 +6,8 @@
   <!-- <app-next-user></app-next-user> -->
   <!-- <app-users></app-users> -->
   <router-outlet></router-outlet>
+  <div style="margin-top: 10%">
+    <login (change)="onLoginEventFired($event)"></login>
+  </div>
 </div>
 

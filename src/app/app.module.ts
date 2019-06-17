@@ -11,6 +11,7 @@ import { NextUserComponent } from './components/next-user/next-user.component';
 import { UsersComponent } from './components/users/users.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserService } from './services/user.service';
+import { LoginService } from './components/login/login.service';
 import { PostService } from './services/post.service';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
@@ -20,6 +21,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DemographicsFormComponent } from './components/demographics-form/demographics-form.component';
 import { TemplateDrivenFormComponent } from './components/template-driven-form/template-driven-form.component';
 import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -36,7 +38,8 @@ import { ReactiveFormComponent } from './components/reactive-form/reactive-form.
     NotFoundComponent,
     DemographicsFormComponent,
     TemplateDrivenFormComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { ReactiveFormComponent } from './components/reactive-form/reactive-form.
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [UserService, PostService],
+  providers: [UserService, PostService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
