@@ -29,6 +29,35 @@
         >
           <a routerLink="/reactive-form" class="nav-link">Reactive Form</a>
         </li>
+
+
+                <!-- If User Is Logged In Boolean Is True -->
+                <li
+                *ngIf="!isLoggedIn"
+                class="nav-item"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}"
+              >
+                <a
+                  href="#"
+                  class="nav-link"
+                  >Login</a>
+              </li>
+
+              <!-- If User Is Logged In Boolean Is False -->
+              <li
+                class="nav-item"
+                [routerLinkActive]="['active']"
+                [routerLinkActiveOptions]="{exact:true}"
+              >
+                <a
+                  href="#"
+                  class="nav-link"
+                >Logout</a>
+              </li>
+
+
+
       </ul>
     </div>
   </div>
