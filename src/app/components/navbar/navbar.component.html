@@ -33,7 +33,7 @@
 
                 <!-- If User Is Logged In Boolean Is True -->
                 <li
-                *ngIf="!isLoggedIn"
+                *ngIf="!isUserLogged"
                 class="nav-item"
                 [routerLinkActive]="['active']"
                 [routerLinkActiveOptions]="{exact:true}"
@@ -46,6 +46,7 @@
 
               <!-- If User Is Logged In Boolean Is False -->
               <li
+                *ngIf="isUserLogged"
                 class="nav-item"
                 [routerLinkActive]="['active']"
                 [routerLinkActiveOptions]="{exact:true}"
