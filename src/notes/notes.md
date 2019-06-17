@@ -40,6 +40,10 @@ Adding or using certain classes depending on certain properties, values or aspec
   }
 
 <br>
+
+### EventEmitter, passing data between sibling components
+
+<br>
 ### HTTP Client
 
 <br>
